@@ -1,0 +1,77 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Level 1
+model Roles {
+  id        Int      @id @default(autoincrement())
+  name      String  @db.VarChar(30) @unique
+  status    Boolean  @default(true)
+
+  users     Users[]
+  @@map("roles")
+}
+
+model Categories {
+  id        Int      @id @default(autoincrement())
+  name      String  @db.VarChar(30) @unique
+  status    Boolean  @default(true)
+
+  products      Products[]
+  @@map("categories")
+}
+
+model Warehouses {
+  id        Int      @id @default(autoincrement())
+  name      String  @db.VarChar(30) @unique
+  status    Boolean  @default(true)
+
+  areas      Areas[]
+  @@map("warehouses")
+}
+
+// Level 2
+model Users {
+  id        Int      @id @default(autoincrement())
+  role_id   Int      @db.Integer
+  name      String  @db.VarChar(30)
+  email     String  @db.VarChar(60) @unique
+  password  String  @db.VarChar(255)
+  status    Boolean  @default(true)
+
+  roles      Roles    @relation(fields: [role_id], references: [id])
+  @@map("users")
+}
+
+model Areas {
+  id        Int      @id @default(autoincrement())
+  warehouse_id   Int      @db.Integer
+  name      String  @db.VarChar(30) @unique
+  status    Boolean  @default(true)
+  
+  products      Products[]
+  warehouses      Warehouses    @relation(fields: [warehouse_id], references: [id])
+  @@map("areas")
+}
+
+// Level 3
+model Products {
+  id        Int      @id @default(autoincrement())
+  name      String  @db.VarChar(30)
+  price     Float  
+  quantity  Int     @db.Integer
+  status    Boolean  @default(true)
+  category_id   Int      @db.Integer
+  area_id   Int      @db.Integer
+
+  categories      Categories    @relation(fields: [category_id], references: [id])
+  areas      Areas    @relation(fields: [area_id], references: [id])
+
+  @@unique([name, area_id])
+  @@map("products")
+}
