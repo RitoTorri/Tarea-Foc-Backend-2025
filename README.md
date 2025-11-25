@@ -1,5 +1,18 @@
 # Tarea-Foc-2025
 
+API de gestión. Con CRUDS funcionales y distintos modulos de trabajo.
+
+## 👥 **Equipo de Desarrollo**
+
+| Nombre |
+|---------|
+| Jesús Cortez |
+| Jesús Camacho |
+| Santiago Rodriguez |
+| Erika |
+
+---
+
 ## 📋 Requerimientos
 
 Necesitas tener instalado los siguiente::
