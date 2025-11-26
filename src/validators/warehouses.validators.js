@@ -1,6 +1,6 @@
 import { WarehousesServices } from '../services/warehouses.service.js';
 import { body, param, validationResult } from 'express-validator';
-
+//Aporte Santiago Rodriguez
 // Valida que el campo nombre no este vacio
 const validatorName = async (req, res, next) => {
     await body('name').notEmpty().withMessage('El campo nombre no puede estar vacío').run(req);
