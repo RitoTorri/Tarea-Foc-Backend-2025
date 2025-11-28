@@ -9,7 +9,7 @@ API de gestión. Con CRUDS funcionales y distintos modulos de trabajo.
 | Jesús Cortez |
 | Jesús Camacho |
 | Santiago Rodriguez |
-| Erika |
+| Erika Ramirez |
 
 ---
 
