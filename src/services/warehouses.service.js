@@ -156,6 +156,7 @@ const WarehousesServices = {
                 status: 204,
                 data: {
                     warehouse,
+                    deleted_at: new Date()
                 },
             };
         } catch (error) {

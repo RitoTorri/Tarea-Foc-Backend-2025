@@ -13,6 +13,10 @@ model Roles {
   name      String  @db.VarChar(30) @unique
   status    Boolean  @default(true)
 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  deleted_at DateTime?
+
   users     Users[]
   @@map("roles")
 }
@@ -22,6 +26,10 @@ model Categories {
   name      String  @db.VarChar(30) @unique
   status    Boolean  @default(true)
 
+ created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  deleted_at DateTime?
+
   products      Products[]
   @@map("categories")
 }
@@ -30,6 +38,10 @@ model Warehouses {
   id        Int      @id @default(autoincrement())
   name      String  @db.VarChar(30) @unique
   status    Boolean  @default(true)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  deleted_at DateTime?
 
   areas      Areas[]
   @@map("warehouses")
@@ -44,6 +56,10 @@ model Users {
   password  String  @db.VarChar(255)
   status    Boolean  @default(true)
 
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  deleted_at DateTime?
+
   roles      Roles    @relation(fields: [role_id], references: [id])
   @@map("users")
 }
@@ -53,6 +69,10 @@ model Areas {
   warehouse_id   Int      @db.Integer
   name      String  @db.VarChar(30) @unique
   status    Boolean  @default(true)
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  deleted_at DateTime?
   
   products      Products[]
   warehouses      Warehouses    @relation(fields: [warehouse_id], references: [id])
@@ -68,6 +88,10 @@ model Products {
   status    Boolean  @default(true)
   category_id   Int      @db.Integer
   area_id   Int      @db.Integer
+
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  deleted_at DateTime?
 
   categories      Categories    @relation(fields: [category_id], references: [id])
   areas      Areas    @relation(fields: [area_id], references: [id])

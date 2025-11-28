@@ -150,6 +150,7 @@ const AreasServices = {
                 where: { id: id },
                 data: {
                     status: false,
+                    deleted_at: new Date()
                 },
             });
             return {

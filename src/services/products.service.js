@@ -154,6 +154,7 @@ const ProductsServices = {
                 where: { id: id },
                 data: {
                     status: false,
+                    deleted_at: new Date()
                 },
             });
             return {

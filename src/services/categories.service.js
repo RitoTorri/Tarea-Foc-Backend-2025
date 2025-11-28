@@ -148,7 +148,8 @@ const CategoriesServices = {
             const categorie = await prisma.categories.update({
                 where: { id: id },
                 data: {
-                    status: false
+                    status: false,
+                    deleted_at: new Date()
                 },
             });
             return {
